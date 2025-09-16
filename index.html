@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Magician Number Trick</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      padding: 20px;
+      background: #f4f4f9;
+      color: #333;
+      align-items: center;
+      justify-content: center;
+      display: flex;
+      min-height: 100vh;
+      margin:0;
+      background-image: url('2111.w039.n003.5B.p1.5.jpg');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+    }
+
+    .container {
+      max-width: 900px;
+      width: 90%;
+      border: 3px solid green;
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+
+    h1 {
+      font-size: 2rem;
+    }
+
+    p {
+      font-size: 1rem;
+      line-height: 1.5;
+    }
+
+    button {
+      padding: 10px 20px;
+      margin: 10px;
+      border: none;
+      border-radius: 5px;
+      background: #4caf50;
+      color: white;
+      cursor: pointer;
+      font-size: 16px;
+      transition: background 0.3s ease;
+    }
+
+    button:hover {
+      background: #45a049;
+    }
+
+    #output {
+      margin-top: 20px;
+      font-size: 18px;
+      font-weight: bold;
+      color: #2c3e50;
+    }
+
+    /* 📱 Mobile responsive adjustments */
+    @media (max-width: 600px) {
+      .container {
+        width: 100%;
+        padding: 15px;
+      }
+
+      h1 {
+        font-size: 1.5rem;
+      }
+
+      p, button {
+        font-size: 14px;
+      }
+
+      #output {
+        font-size: 16px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>🔮 Magician Number Trick</h1>
+    <p id="intro">I am a magician who can predict the number that will remain in your hand after all the calculations.</p>
+    <button onclick="startTrick()">Start Trick</button>
+    <p id="message"></p>
+    <div id="output"></div>
+  </div>
+
+  <script>
+    let step = 0;
+    let randomEven = 0;
+
+    function startTrick(){
+      step = 1;
+      // Hide intro sentence when trick starts
+      document.getElementById("intro").style.display = "none"; 
+      
+      document.getElementById("message").innerText = "Think of any number (don’t enter it). When ready, click Next.";
+      document.querySelector("#output").innerHTML = '<button onclick="nextStep()">Next</button>';
+    }
+
+    function nextStep(){
+      if(step === 1){
+        step++;
+        document.getElementById("message").innerText = "Take the same number as your friend’s and add it (so now it’s twice your number + friend’s number).";
+      }
+      else if(step === 2){
+        step++;
+        randomEven = Math.floor(Math.random()*50)*2 + 2; // even number 2–100
+        document.getElementById("message").innerText = "Now add my number: " + randomEven;
+      }
+      else if(step === 3){
+        step++;
+        document.getElementById("message").innerText = "Divide the total by 2.";
+      }
+      else if(step === 4){
+        step++;
+        document.getElementById("message").innerText = "Subtract your friend’s number.";
+      }
+      else if(step === 5){
+        document.getElementById("message").innerText = "The number left in your hand is:";
+        document.getElementById("output").innerHTML = "<h2>🎉 " + (randomEven/2) + " 🎉</h2>";
+        return;
+      }
+      document.querySelector("#output").innerHTML = '<button onclick="nextStep()">Next</button>';
+    }
+  </script>
+</body>
+</html>
